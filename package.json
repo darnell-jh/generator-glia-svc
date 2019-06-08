@@ -1,0 +1,16 @@
+{
+  "name": "generator-glia-svc",
+  "version": "1.0.0",
+  "description": "Generates command microservice using glia",
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "Darnell (darnelljh@gmail.com)",
+  "license": "MIT",
+  "dependencies": {
+    "yeoman-generator": "^4.0.1"
+  }
+}
