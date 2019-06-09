@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: <%=projectName%>
+  rabbitmq:
+    username: guest
+    password: guest
+    template:
+      exchange: eventbus
+  data:
+    cassandra:
+      cluster-name: mycluster
+      keyspace-name: ${spring.application.name}
+glia:
+  rabbit:
+    event-packages: <%=packageName%>.domain.events.produced
+  cassandra:
+    entity-base-packages: <%=packageName%>.domain.entities
+    replication:
+      strategy: NETWORK_TOPOLOGY_STRATEGY
+      data-centers:
+        DC1: 1

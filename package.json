@@ -10,7 +10,24 @@
   ],
   "author": "Darnell (darnelljh@gmail.com)",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "npm run test:unit -- test/**/*.spec.js test/*.spec.js --no-insight",
+    "test:unit": "mocha --timeout 20000 --slow 0 --reporter spec"
+  },
   "dependencies": {
     "yeoman-generator": "^4.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-google": "^0.13.0",
+    "mocha": "^6.1.4",
+    "yeoman-assert": "^3.1.1",
+    "yeoman-test": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=10.15.1",
+    "npm": ">=6.9.0"
   }
 }
