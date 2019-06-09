@@ -4,7 +4,7 @@ const MAIN_RESOURCES_DIR = 'src/main/resources/';
 const PACKAGE_FOLDER = 'com/example/app/';
 
 const expectedFiles = {
-  command: [
+  all: [
     `${MAIN_KOTLIN_DIR}${PACKAGE_FOLDER}config/SwaggerConfig.kt`,
     `${MAIN_KOTLIN_DIR}${PACKAGE_FOLDER}config/WebMvcConfig.kt`,
     `${MAIN_KOTLIN_DIR}${PACKAGE_FOLDER}Application.kt`,

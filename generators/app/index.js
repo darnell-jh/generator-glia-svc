@@ -43,8 +43,10 @@ module.exports = class extends Generator {
     console.log('projectType: ', this.projectType);
     switch (this.projectType) {
       case 'Command':
-        console.log('Calling _generateCmd');
         this._generateCmd();
+        break;
+      case 'Query':
+        this._generateQuery();
         break;
     }
   }
@@ -95,6 +97,36 @@ module.exports = class extends Generator {
     const kotlinTestDirTmpl = 'cmd/src/test/kotlin/package/';
     const kotlinResDir = 'src/main/resources/';
     const kotlinResTmpl = 'cmd/src/main/resources/';
+
+    // Application Config Files
+    this.fs.copyTpl(
+        this.templatePath(kotlinResTmpl),
+        this.destinationPath(kotlinResDir),
+        {
+          packageName: this.packageName,
+          projectName: this.projectName,
+        }
+    );
+
+    // Test Files
+    this.fs.copyTpl(
+        this.templatePath(kotlinTestDirTmpl),
+        this.destinationPath(kotlinTestDir),
+        {
+          packageName: this.packageName,
+          projectName: this.projectName,
+        }
+    );
+  }
+
+  /**
+   * Generate the files specific for Query services.
+   */
+  _generateQuery() {
+    const kotlinTestDir = 'src/test/kotlin/' + this.packageFolder + '/';
+    const kotlinTestDirTmpl = 'query/src/test/kotlin/package/';
+    const kotlinResDir = 'src/main/resources/';
+    const kotlinResTmpl = 'query/src/main/resources/';
 
     // Application Config Files
     this.fs.copyTpl(

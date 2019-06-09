@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: <%=projectName%>
+  rabbitmq:
+    username: guest
+    password: guest
+    template:
+      exchange: eventbus
+  data:
+    cassandra:
+      cluster-name: mycluster
+      keyspace-name: ${spring.application.name}
+glia:
+  consumer:
+    enabled: true
+  rabbit:
+    event-packages: com.dhenry.domain.events.consumed
+  cassandra:
+    entity-base-packages: com.dhenry.domain.entities
+    replication:
+      strategy: NETWORK_TOPOLOGY_STRATEGY
+      data-centers:
+        DC1: 1
+    enable-domain-events: false
