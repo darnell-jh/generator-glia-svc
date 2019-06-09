@@ -39,6 +39,10 @@ dependencies {
     testApi 'org.awaitility:awaitility-kotlin:3.1.6'
 }
 
+test {
+  include '**/*UnitTest*'
+}
+
 compileKotlin {
     kotlinOptions {
         freeCompilerArgs = ["-Xjsr305=strict"]
