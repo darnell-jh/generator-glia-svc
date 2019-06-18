@@ -68,6 +68,16 @@ module.exports = class extends Generator {
         }
     );
 
+    // Dockerfile
+    this.fs.copyTpl(
+      this.templatePath('base/Dockerfile'),
+      this.destinationPath('Dockerfile'),
+      {
+        packageName: this.packageName,
+        projectName: this.projectName,
+      }
+  );
+
     // Config files
     this.fs.copyTpl(
         this.templatePath('base/*.*'),

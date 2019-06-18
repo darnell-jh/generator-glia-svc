@@ -1,4 +1,4 @@
-package <%=packageName%>;
+package <%=packageName%>
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
