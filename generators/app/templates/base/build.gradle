@@ -52,6 +52,11 @@ compileTestKotlin {
     }
 }
 
+test {
+  // We will only run unit tests during build phase
+  include '**/*UnitTest*'
+}
+
 task runUnitTests(type: Test) {
     description = 'Runs Unit Tests.'
     group = 'verification'
