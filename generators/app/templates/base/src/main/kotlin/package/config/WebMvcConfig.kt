@@ -1,7 +1,7 @@
 package <%=packageName%>.config
 
-import com.dhenry.glia.config.LoggingInterceptor
-import com.dhenry.glia.config.ProjectInterceptor
+import com.dhenry.projectlib.ProjectInterceptor
+import com.dhenry.projectlib.ProjectLoggingInterceptor
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry
@@ -18,7 +18,7 @@ class WebMvcConfig: WebMvcConfigurer {
     override fun addInterceptors(registry: InterceptorRegistry) {
         with (registry) {
             addInterceptor(ProjectInterceptor())
-            addInterceptor(LoggingInterceptor())
+            addInterceptor(ProjectLoggingInterceptor())
         }
     }
 }

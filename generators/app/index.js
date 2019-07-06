@@ -1,5 +1,33 @@
 const Generator = require('yeoman-generator');
 
+const tplCache = {};
+
+// Capitalizes the first letter of a string.
+String.prototype.capitalize = function() {
+  if (!tplCache[this + '.capitalize']) {
+    const words = this.toLocaleLowerCase();
+    tplCache[this + '.capitalize'] =
+     words.charAt(0).toLocaleUpperCase() + words.slice(1);
+  }
+  return tplCache[this + '.capitalize'];
+};
+
+// Converts string from snake case to camel case.
+String.prototype.snakeToCamelCase = function() {
+  if (!tplCache[this + '.snakeToCamelCase']) {
+    const splitSnakeVar = this.split(/[-_]/);
+    if (!splitSnakeVar || splitSnakeVar.length === 0) {
+      throw new Error('Not a valid snake case string');
+    }
+    for (let i = 1; i < splitSnakeVar.length; i++) {
+      splitSnakeVar[i] =
+        splitSnakeVar[i].charAt(0).toUpperCase() + splitSnakeVar[i].slice(1);
+    }
+    tplCache[this + '.snakeToCamelCase'] = splitSnakeVar.join('');
+  }
+  return tplCache[this + '.snakeToCamelCase'];
+};
+
 module.exports = class extends Generator {
   /**
    * Provides prompts for scaffolding
@@ -10,27 +38,31 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'projectName',
-        message: '(1/3) What is the name of your project?',
+        message: '(1/4) What is the name of your project?',
         default: this.appname,
       },
       {
         type: 'list',
         name: 'projectType',
-        message: '(2/3) What type of project are you creating?',
+        message: '(2/4) What type of project are you creating?',
         choices: ['Command', 'Query', 'Worker'],
       },
       {
         type: 'input',
         name: 'packageName',
-        message: '(3/3) What is your default package name?',
+        message: '(3/4) What is your default package name?',
         default: 'com.example',
+      },
+      {
+        type: 'input',
+        name: 'serviceName',
+        message: '(4/4) What do you want to call your service?' +
+         '(Note: This will create *Service, *Controller, etc.)',
       },
     ];
 
     return this.prompt(prompts).then((answers) => {
-      this.packageName = answers.packageName;
-      this.projectName = answers.projectName;
-      this.projectType = answers.projectType;
+      this.answers = answers;
     });
   }
 
@@ -38,10 +70,11 @@ module.exports = class extends Generator {
    * Write out files for scaffolding
    */
   writing() {
-    this.packageFolder = this.packageName.replace(/\./g, '/');
+    this.packageFolder = this.answers['packageName'].replace(/\./g, '/');
     this._generateBase();
-    console.log('projectType: ', this.projectType);
-    switch (this.projectType) {
+    const projectType = this.answers['projectType'];
+    // console.log('Writing projectType: ', projectType);
+    switch (projectType) {
       case 'Command':
         this._generateCmd();
         break;
@@ -62,40 +95,28 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
         this.templatePath('base/gitignore'),
         this.destinationPath('.gitignore'),
-        {
-          packageName: this.packageName,
-          projectName: this.projectName,
-        }
+        this.answers
     );
 
     // Dockerfile
     this.fs.copyTpl(
-      this.templatePath('base/Dockerfile'),
-      this.destinationPath('Dockerfile'),
-      {
-        packageName: this.packageName,
-        projectName: this.projectName,
-      }
-  );
+        this.templatePath('base/Dockerfile'),
+        this.destinationPath('Dockerfile'),
+        this.answers
+    );
 
     // Config files
     this.fs.copyTpl(
         this.templatePath('base/*.*'),
         this.destinationPath(),
-        {
-          packageName: this.packageName,
-          projectName: this.projectName,
-        }
+        this.answers
     );
 
     // Sources
     this.fs.copyTpl(
         this.templatePath(kotlinDirTmpl),
         this.destinationPath(kotlinDir),
-        {
-          packageName: this.packageName,
-          projectName: this.projectName,
-        }
+        this.answers
     );
   }
 
@@ -103,6 +124,8 @@ module.exports = class extends Generator {
    * Generate the files specific for Command services.
    */
   _generateCmd() {
+    const kotlinDir = 'src/main/kotlin/' + this.packageFolder + '/';
+    const kotlinDirTmpl = 'cmd/src/main/kotlin/package/';
     const kotlinTestDir = 'src/test/kotlin/' + this.packageFolder + '/';
     const kotlinTestDirTmpl = 'cmd/src/test/kotlin/package/';
     const kotlinResDir = 'src/main/resources/';
@@ -112,20 +135,21 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
         this.templatePath(kotlinResTmpl),
         this.destinationPath(kotlinResDir),
-        {
-          packageName: this.packageName,
-          projectName: this.projectName,
-        }
+        this.answers
     );
 
     // Test Files
     this.fs.copyTpl(
         this.templatePath(kotlinTestDirTmpl),
         this.destinationPath(kotlinTestDir),
-        {
-          packageName: this.packageName,
-          projectName: this.projectName,
-        }
+        this.answers
+    );
+
+    // Cmd Sources
+    this.fs.copyTpl(
+        this.templatePath(kotlinDirTmpl),
+        this.destinationPath(kotlinDir),
+        this.answers
     );
   }
 
@@ -142,20 +166,14 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
         this.templatePath(kotlinResTmpl),
         this.destinationPath(kotlinResDir),
-        {
-          packageName: this.packageName,
-          projectName: this.projectName,
-        }
+        this.answers
     );
 
     // Test Files
     this.fs.copyTpl(
         this.templatePath(kotlinTestDirTmpl),
         this.destinationPath(kotlinTestDir),
-        {
-          packageName: this.packageName,
-          projectName: this.projectName,
-        }
+        this.answers
     );
   }
 };
