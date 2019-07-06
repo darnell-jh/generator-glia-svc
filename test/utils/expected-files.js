@@ -26,7 +26,13 @@ const expectedFiles = {
     `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/controllers/responses/ExampleResponse.kt`,
   ],
   query: [
-
+    `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/controllers/ExampleController.kt`,
+    `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/domain/entities/Example.kt`,
+    `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/domain/events/consumed/ExampleCreatedEvent.kt`,
+    `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/domain/events/consumed/ExampleDeletedEvent.kt`,
+    `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/domain/events/consumed/ExampleUpdatedEvent.kt`,
+    `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/domain/listeners/external/ExampleEventListener.kt`,
+    `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/domain/repositories/ExampleRepository.kt`,
   ],
 };
 

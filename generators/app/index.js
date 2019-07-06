@@ -131,6 +131,13 @@ module.exports = class extends Generator {
     const kotlinResDir = 'src/main/resources/';
     const kotlinResTmpl = 'cmd/src/main/resources/';
 
+    // Config files
+    this.fs.copyTpl(
+        this.templatePath('cmd/*.*'),
+        this.destinationPath(),
+        this.answers
+    );
+
     // Application Config Files
     this.fs.copyTpl(
         this.templatePath(kotlinResTmpl),
@@ -157,10 +164,19 @@ module.exports = class extends Generator {
    * Generate the files specific for Query services.
    */
   _generateQuery() {
+    const kotlinDir = 'src/main/kotlin/' + this.packageFolder + '/';
+    const kotlinDirTmpl = 'query/src/main/kotlin/package/';
     const kotlinTestDir = 'src/test/kotlin/' + this.packageFolder + '/';
     const kotlinTestDirTmpl = 'query/src/test/kotlin/package/';
     const kotlinResDir = 'src/main/resources/';
     const kotlinResTmpl = 'query/src/main/resources/';
+
+    // Config files
+    this.fs.copyTpl(
+        this.templatePath('query/*.*'),
+        this.destinationPath(),
+        this.answers
+    );
 
     // Application Config Files
     this.fs.copyTpl(
@@ -173,6 +189,13 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
         this.templatePath(kotlinTestDirTmpl),
         this.destinationPath(kotlinTestDir),
+        this.answers
+    );
+
+    // Query Sources
+    this.fs.copyTpl(
+        this.templatePath(kotlinDirTmpl),
+        this.destinationPath(kotlinDir),
         this.answers
     );
   }
