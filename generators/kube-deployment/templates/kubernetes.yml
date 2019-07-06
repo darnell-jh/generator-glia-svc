@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: <%=namespace%>
+  name: <%=friendlyName%>
+  labels:
+    app: <%=appGroup%>
+spec:
+  selector:
+    service: <%=projectName%>
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: <%=namespace%>
+  name: <%=friendlyName%>
+  labels:
+    app: <%=appGroup%>
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: <%=projectName%>
+  template:
+    metadata:
+      labels:
+        service: <%=projectName%>
+    spec:
+      containers:
+      - name: <%=projectName%>
+        image: <%=imageName%>
+        ports:
+        - containerPort: 8080
+        env:
+        - name: CASSANDRA_CONTACT_POINTS
+          value: <%=appGroup%>-cassandra
+        - name: SPRING_RABBITMQ_ADDRESSES
+          value: <%=appGroup%>-rabbitmq

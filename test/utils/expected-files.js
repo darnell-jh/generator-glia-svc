@@ -34,6 +34,9 @@ const expectedFiles = {
     `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/domain/listeners/external/ExampleEventListener.kt`,
     `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/domain/repositories/ExampleRepository.kt`,
   ],
+  kubeDeployments: [
+    'kubernetes.yml',
+  ],
 };
 
 module.exports = {expectedFiles, MAIN_KOTLIN_DIR, TEST_KOTLIN_DIR,

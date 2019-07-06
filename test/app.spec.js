@@ -66,4 +66,28 @@ describe('Glia Service generator', () => {
       );
     });
   });
+
+  describe('Kubernetes Deployment', () => {
+    before((done) => {
+      helpers
+          .run(path.join(__dirname, '../generators/kube-deployment'))
+          .withOptions({
+            'from-cli': true,
+            'skipInstall': true,
+            'skipChecks': true,
+          })
+          .withPrompts({
+            projectName: 'my-project',
+            namespace: 'my-namespace',
+            friendlyName: 'project',
+            appGroup: 'my',
+            imageName: 'my/image',
+          })
+          .on('end', done);
+    });
+
+    it('should create deployment files', () => {
+      assert.file(expectedFiles.kubeDeployments);
+    });
+  });
 });
