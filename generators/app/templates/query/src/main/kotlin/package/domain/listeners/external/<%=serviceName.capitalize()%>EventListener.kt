@@ -19,12 +19,12 @@ import java.util.*
 class <%=serviceName.capitalize()%>EventListener(private val <%=serviceName.toLocaleLowerCase()%>Repository: <%=serviceName.capitalize()%>Repository) {
 
     companion object {
-        val logger: Logger = LoggerFactory.getLogger(<%=serviceName.capitalize()%>EventListener::class.java)
+        val LOGGER: Logger = LoggerFactory.getLogger(<%=serviceName.capitalize()%>EventListener::class.java)
     }
 
     @RabbitHandler
     fun on(<%=serviceName.toLocaleLowerCase()%>CreatedEvent: <%=serviceName.capitalize()%>CreatedEvent, @Header("timestamp") timestamp: Date) {
-        logger.info("<%=serviceName.capitalize()%> Added Event: {}", <%=serviceName.toLocaleLowerCase()%>CreatedEvent)
+        LOGGER.info("<%=serviceName.capitalize()%> Added Event: {}", <%=serviceName.toLocaleLowerCase()%>CreatedEvent)
         val <%=serviceName.toLocaleLowerCase()%> = with(<%=serviceName.toLocaleLowerCase()%>CreatedEvent) {
             <%=serviceName.capitalize()%>(projectId!!, name)
         }
@@ -33,7 +33,7 @@ class <%=serviceName.capitalize()%>EventListener(private val <%=serviceName.toLo
 
     @RabbitHandler
     fun on(<%=serviceName.toLocaleLowerCase()%>DeletedEvent: <%=serviceName.capitalize()%>DeletedEvent) {
-        logger.info("<%=serviceName.capitalize()%> Deleted Event: {}", <%=serviceName.toLocaleLowerCase()%>DeletedEvent)
+        LOGGER.info("<%=serviceName.capitalize()%> Deleted Event: {}", <%=serviceName.toLocaleLowerCase()%>DeletedEvent)
         val mapId = BasicMapId.id("projectId", <%=serviceName.toLocaleLowerCase()%>DeletedEvent.projectId)
             .with("name", <%=serviceName.toLocaleLowerCase()%>DeletedEvent.name)
         <%=serviceName.toLocaleLowerCase()%>Repository.deleteById(mapId)
