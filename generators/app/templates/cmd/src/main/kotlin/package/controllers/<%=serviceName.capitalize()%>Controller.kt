@@ -1,7 +1,7 @@
-package com.dhenry.controllers
+package <%=packageName%>.controllers
 
-import com.dhenry.controllers.requests.<%=serviceName.capitalize()%>Request
-import com.dhenry.controllers.responses.<%=serviceName.capitalize()%>Response
+import <%=packageName%>.controllers.requests.<%=serviceName.capitalize()%>Request
+import <%=packageName%>.controllers.responses.<%=serviceName.capitalize()%>Response
 import <%=packageName%>.services.<%=serviceName.capitalize()%>Service
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType

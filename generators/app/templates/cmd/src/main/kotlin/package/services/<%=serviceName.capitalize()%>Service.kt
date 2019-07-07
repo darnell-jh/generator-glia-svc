@@ -1,8 +1,8 @@
 package <%=packageName%>.services
 
-import com.dhenry.controllers.requests.<%=serviceName.capitalize()%>Request
-import com.dhenry.controllers.responses.<%=serviceName.capitalize()%>Response
-import com.dhenry.domain.aggregates.<%=serviceName.capitalize()%>Aggregate
+import <%=packageName%>.controllers.requests.<%=serviceName.capitalize()%>Request
+import <%=packageName%>.controllers.responses.<%=serviceName.capitalize()%>Response
+import <%=packageName%>.domain.aggregates.<%=serviceName.capitalize()%>Aggregate
 import com.dhenry.glia.config.DomainEventsService
 import com.dhenry.glia.utils.AggregateProvider
 import org.springframework.stereotype.Service

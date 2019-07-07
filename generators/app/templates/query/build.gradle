@@ -83,7 +83,7 @@ task runComponentTests(type: Test) {
 docker {
     name "dh/${project.name}"
     files jar.archiveFile
-    tag 'asLocal', 'local'
+    tag 'asLocal', "${docker.name}:local"
     buildArgs([JAR_FILE: "${project.name}-${project.version}.jar"])
 }
 

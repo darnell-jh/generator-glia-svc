@@ -1,6 +1,6 @@
-package <%=projectName%>.test.medium
+package <%=packageName%>.tests.medium
 
-import <%=projectName%>.Application
+import <%=packageName%>.Application
 import com.dhenry.glia.rabbit.service.RabbitService
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired

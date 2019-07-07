@@ -1,8 +1,8 @@
-package com.dhenry.controllers
+package <%=packageName%>.controllers
 
-import com.dhenry.domain.entities.<%=serviceName.capitalize()%>
-import com.dhenry.domain.repositories.<%=serviceName.capitalize()%>Repository
-import com.dhenry.helpers.projectId
+import <%=packageName%>.domain.entities.<%=serviceName.capitalize()%>
+import <%=packageName%>.domain.repositories.<%=serviceName.capitalize()%>Repository
+import com.dhenry.projectlib.ProjectRegistry.Companion.projectId
 import org.springframework.data.cassandra.core.mapping.BasicMapId
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
