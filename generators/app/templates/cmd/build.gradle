@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.1.3.RELEASE'
     id 'org.jetbrains.kotlin.jvm' version '1.3.31'
     id 'org.jetbrains.kotlin.plugin.spring' version '1.3.31'
+    id 'com.palantir.docker' version '0.22.1'
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -77,6 +78,15 @@ task runComponentTests(type: Test) {
         includeTestsMatching '*ComponentTest'
     }
 }
+
+docker {
+    name "dh/${project.name}"
+    files jar.archiveFile
+    tag 'asLocal', 'local'
+    buildArgs([JAR_FILE: "${project.name}-${project.version}.jar"])
+}
+
+docker.dependsOn build
 
 wrapper {
     gradleVersion = '5.4.1'
