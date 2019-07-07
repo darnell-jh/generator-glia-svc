@@ -13,8 +13,8 @@ class SwaggerConfig: SwaggerBaseConfig() {
 
     override fun apiInfo(): ApiInfo {
         return ApiInfoBuilder()
-            .description("Initial backend service, will be split more into micro-services later")
-            .title("Awesome Bugeting API")
+            .description("Awesome Glia Microservice API")
+            .title("Awesome Glia Microservice API")
             .version("v1")
             .contact(Contact("Darnell", "www.example.com", "lild12@gmail.com"))
             .build()
