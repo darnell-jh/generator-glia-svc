@@ -1,8 +1,7 @@
 const path = require('path');
 const assert = require('yeoman-assert');
 const helpers = require('yeoman-test');
-const {expectedFiles, MAIN_RESOURCES_DIR} =
-  require('./utils/expected-files.js');
+const {expectedFiles} = require('./utils/expected-files.js');
 
 describe('Glia Service generator', () => {
   describe('Glia Command App', () => {
@@ -27,13 +26,6 @@ describe('Glia Service generator', () => {
       assert.file(expectedFiles.all);
       assert.file(expectedFiles.cmd);
     });
-
-    it('should generate spring.application.name in camel case', () => {
-      assert.fileContent(
-          `${MAIN_RESOURCES_DIR}/application.yml`,
-          '    name: myProject'
-      );
-    });
   });
 
   describe('Glia Query App', () => {
@@ -57,13 +49,6 @@ describe('Glia Service generator', () => {
     it('should create default files for queries', () => {
       assert.file(expectedFiles.all);
       assert.file(expectedFiles.query);
-    });
-
-    it('should generate spring.application.name in camel case', () => {
-      assert.fileContent(
-          `${MAIN_RESOURCES_DIR}/application.yml`,
-          '    name: myProject'
-      );
     });
   });
 

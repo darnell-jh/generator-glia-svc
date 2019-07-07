@@ -12,22 +12,6 @@ String.prototype.capitalize = function() {
   return tplCache[this + '.capitalize'];
 };
 
-// Converts string from snake case to camel case.
-String.prototype.snakeToCamelCase = function() {
-  if (!tplCache[this + '.snakeToCamelCase']) {
-    const splitSnakeVar = this.split(/[-_]/);
-    if (!splitSnakeVar || splitSnakeVar.length === 0) {
-      throw new Error('Not a valid snake case string');
-    }
-    for (let i = 1; i < splitSnakeVar.length; i++) {
-      splitSnakeVar[i] =
-        splitSnakeVar[i].charAt(0).toUpperCase() + splitSnakeVar[i].slice(1);
-    }
-    tplCache[this + '.snakeToCamelCase'] = splitSnakeVar.join('');
-  }
-  return tplCache[this + '.snakeToCamelCase'];
-};
-
 module.exports = class extends Generator {
   /**
    * Provides prompts for scaffolding

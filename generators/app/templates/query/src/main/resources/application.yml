@@ -1,6 +1,6 @@
 spring:
   application:
-    name: <%=projectName.snakeToCamelCase()%>
+    name: <%=projectName%>
   rabbitmq:
     username: guest
     password: guest
