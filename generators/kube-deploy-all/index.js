@@ -13,7 +13,7 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'folders',
-        message: '(1/2) Where are the folders to grab deployment scripts from?' +
+        message: '(1/1) Where are the folders to grab deployment scripts from?' +
          '(comma delimited, Glob patterns accepted)',
         default: '**/kubernetes.yaml',
       },
@@ -40,6 +40,7 @@ module.exports = class extends Generator {
     for (const pattern of patterns) {
       files = files.concat(glob.sync(pattern));
     }
+    console.log('Loading files: ', files);
     this._loadFiles(files);
   }
 
