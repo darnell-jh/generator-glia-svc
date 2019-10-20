@@ -25,6 +25,7 @@ const expectedFiles = {
     `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/domain/events/produced/ExampleDeletedEvent.kt`,
     `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/controllers/requests/ExampleRequest.kt`,
     `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/controllers/responses/ExampleResponse.kt`,
+    `${TEST_KOTLIN_DIR}/${PACKAGE_FOLDER}/tests/medium/ExampleControllerComponentTest.kt`,
   ],
   query: [
     `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/controllers/ExampleController.kt`,

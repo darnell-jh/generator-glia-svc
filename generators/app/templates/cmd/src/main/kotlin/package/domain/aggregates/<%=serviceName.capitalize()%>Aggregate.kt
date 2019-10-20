@@ -5,14 +5,14 @@ import <%=packageName%>.domain.events.produced.<%=serviceName.capitalize()%>Dele
 import <%=packageName%>.domain.events.produced.<%=serviceName.capitalize()%>UpdatedEvent
 import <%=packageName%>.glia.annotations.AggregateId
 import <%=packageName%>.glia.annotations.EventSourceHandler
-import <%=packageName%>.glia.cassandra.domain.aggregate.AbstractAggregateRoot
+import <%=packageName%>.glia.data.aggregate.AbstractAggregateRoot
 import <%=packageName%>.glia.cassandra.domain.models.AggregatePrimaryKey
 import java.time.LocalDate
 import java.util.*
 
 class <%=serviceName.capitalize()%>Aggregate(
-    name: String? = null
-) : AbstractAggregateRoot<<%=serviceName.capitalize()%>Aggregate>(AggregatePrimaryKey()) {
+    name: String = ""
+) : AbstractAggregateRoot<<%=serviceName.capitalize()%>Aggregate, AggregatePrimaryKey>(AggregatePrimaryKey(generateId(name))) {
 
     companion object {
 

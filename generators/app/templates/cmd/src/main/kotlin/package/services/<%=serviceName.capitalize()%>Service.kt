@@ -3,7 +3,7 @@ package <%=packageName%>.services
 import <%=packageName%>.controllers.requests.<%=serviceName.capitalize()%>Request
 import <%=packageName%>.controllers.responses.<%=serviceName.capitalize()%>Response
 import <%=packageName%>.domain.aggregates.<%=serviceName.capitalize()%>Aggregate
-import com.dhenry.glia.config.DomainEventsService
+import com.dhenry.glia.data.DataDomainEventsOperations
 import com.dhenry.glia.utils.AggregateProvider
 import org.springframework.stereotype.Service
 
@@ -29,7 +29,7 @@ class <%=serviceName.capitalize()%>Service(
         val aggregateId = <%=serviceName.capitalize()%>Aggregate.generateId(name)
         val <%=serviceName.toLocaleLowerCase()%>Aggregate = aggregateProvider.loadAggregate<<%=serviceName.capitalize()%>Aggregate>(aggregateId, false)
             .orElseThrow { throw NullPointerException() }
-        <%=serviceName.toLocaleLowerCase()%>Aggregate.deleteProject()
+        <%=serviceName.toLocaleLowerCase()%>Aggregate.delete<%=serviceName.capitalize()%>()
         domainEventsService.markDeleted(<%=serviceName.toLocaleLowerCase()%>Aggregate)
     }
 
