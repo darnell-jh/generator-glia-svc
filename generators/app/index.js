@@ -22,26 +22,32 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'projectName',
-        message: '(1/4) What is the name of your project?',
+        message: '(1/5) What is the name of your project?',
         default: this.appname,
       },
       {
         type: 'list',
         name: 'projectType',
-        message: '(2/4) What type of project are you creating?',
+        message: '(2/5) What type of project are you creating?',
         choices: ['Command', 'Query', 'Worker'],
       },
       {
         type: 'input',
         name: 'packageName',
-        message: '(3/4) What is your default package name?',
+        message: '(3/5) What is your default package name?',
         default: 'com.example',
       },
       {
         type: 'input',
         name: 'serviceName',
-        message: '(4/4) What do you want to call your service?' +
+        message: '(4/5) What do you want to call your service?' +
          '(Note: This will create *Service, *Controller, etc.)',
+      },
+      {
+        type: 'input',
+        name: 'binaryRepo',
+        message: '(5/5) What is the binary repo manager destination? (Ex: jfrog, bintray)',
+        default: 'dh',
       },
     ];
 

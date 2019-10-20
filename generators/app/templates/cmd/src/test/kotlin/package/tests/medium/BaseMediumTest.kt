@@ -1,7 +1,6 @@
 package <%=packageName%>.tests.medium
 
 import <%=packageName%>.Application
-import com.dhenry.glia.cassandra.config.CassandraPostConfig
 import com.dhenry.glia.test.ProducerEventListener
 import com.dhenry.glia.test.autoconfigure.amqp.rabbit.AutoConfigureRabbitProducerListener
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -38,9 +37,6 @@ abstract class BaseMediumTest {
     private lateinit var cassandraSessionFactoryBean: CassandraSessionFactoryBean
 
     @Autowired
-    private lateinit var cassandraConfig: CassandraPostConfig
-
-    @Autowired
     protected lateinit var mockMvc: MockMvc
 
     @Autowired
@@ -54,7 +50,6 @@ abstract class BaseMediumTest {
 
         eventListener.clearMessages()
         cassandraSessionFactoryBean.afterPropertiesSet()
-        cassandraConfig.setupStaticActiveColumn()
     }
 
     @AfterTest

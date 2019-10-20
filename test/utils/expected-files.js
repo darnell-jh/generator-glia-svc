@@ -5,6 +5,7 @@ const PACKAGE_FOLDER = 'com/example/app';
 
 const expectedFiles = {
   all: [
+    `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/config/QueryLoggingConfig.kt`,
     `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/config/SwaggerConfig.kt`,
     `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/config/WebMvcConfig.kt`,
     `${MAIN_KOTLIN_DIR}/${PACKAGE_FOLDER}/Application.kt`,
