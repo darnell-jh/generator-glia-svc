@@ -55,6 +55,10 @@ compileTestKotlin {
     }
 }
 
+test {
+  include '**/*UnitTest*'
+}
+
 task runUnitTests(type: Test) {
     description = 'Runs Unit Tests.'
     group = 'verification'
@@ -87,5 +91,5 @@ clean {
 }
 
 wrapper {
-    gradleVersion = '5.4.1'
+    gradleVersion = '5.6.3'
 }

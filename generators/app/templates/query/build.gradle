@@ -50,11 +50,16 @@ compileKotlin {
         jvmTarget = "1.8"
     }
 }
+
 compileTestKotlin {
     kotlinOptions {
         freeCompilerArgs = ["-Xjsr305=strict"]
         jvmTarget = "1.8"
     }
+}
+
+test {
+  include '**/*UnitTest*'
 }
 
 task runUnitTests(type: Test) {
@@ -89,5 +94,5 @@ clean {
 }
 
 wrapper {
-    gradleVersion = '5.4.1'
+    gradleVersion = '5.6.3'
 }
