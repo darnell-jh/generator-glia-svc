@@ -36,6 +36,8 @@ dependencies {
 
     // Glia dependencies
     implementation 'com.dhenry.glia:glia-spring-boot-starter:2.0.0'
+    implementation 'com.dhenry.glia:glia-cassandra-spring-boot-starter:2.0.0'
+    implementation 'com.dhenry.glia:glia-rabbit-spring-boot-starter:2.0.0'
     testImplementation 'com.dhenry.glia:glia-spring-boot-starter-test:2.0.0'
 
     // Awaitility
