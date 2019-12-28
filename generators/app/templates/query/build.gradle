@@ -38,9 +38,6 @@ dependencies {
     implementation 'com.dhenry.glia:glia-spring-boot-starter:2.0.0'
     testImplementation 'com.dhenry.glia:glia-spring-boot-starter-test:2.0.0'
 
-    // Project Lib dependencies
-    implementation 'com.dhenry.projectlib:projectlib:1.0.0'
-
     // Awaitility
     testApi 'org.awaitility:awaitility-kotlin:3.1.6'
 }
