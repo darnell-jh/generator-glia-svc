@@ -14,7 +14,7 @@ const val BASE_MAPPING = "/v1/<%=serviceName.toLocaleLowerCase()%>s"
 const val DELETE_ENDPOINT = "/{name}"
 
 @RestController
-@RequestMapping(BASE_MAPPING, consumes = [MediaType.APPLICATION_JSON_UTF8_VALUE])
+@RequestMapping(BASE_MAPPING, consumes = [MediaType.APPLICATION_JSON_VALUE])
 @Validated
 class <%=serviceName.capitalize()%>Controller(private val <%=serviceName.toLocaleLowerCase()%>Service: <%=serviceName.capitalize()%>Service) {
 
