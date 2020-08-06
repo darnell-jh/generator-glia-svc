@@ -2,10 +2,10 @@ package <%=packageName%>.tests.medium
 
 import <%=packageName%>.config.X_PROJECT
 import <%=packageName%>.controllers.BASE_MAPPING
-import <%=packageName%>.controllers.requests.BoacmdRequest
-import <%=packageName%>.domain.aggregates.BoacmdAggregate
-import <%=packageName%>.domain.events.produced.BoacmdCreatedEvent
-import <%=packageName%>.services.BoacmdService
+import <%=packageName%>.controllers.requests.<%=serviceName.capitalize()%>Request
+import <%=packageName%>.domain.aggregates.<%=serviceName.capitalize()%>Aggregate
+import <%=packageName%>.domain.events.produced.<%=serviceName.capitalize()%>CreatedEvent
+import <%=packageName%>.services.<%=serviceName.capitalize()%>Service
 import org.assertj.core.api.Assertions
 import org.awaitility.kotlin.await
 import org.slf4j.Logger

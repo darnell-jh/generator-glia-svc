@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class <%=serviceName.capitalize()%>Service(
-    private val domainEventsService: DomainEventsService,
+    private val domainEventsService: DataDomainEventsOperations,
     private val aggregateProvider: AggregateProvider
 ) {
 

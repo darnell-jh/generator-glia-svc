@@ -5,7 +5,7 @@ import <%=packageName%>.controllers.requests.<%=serviceName.capitalize()%>Reques
 data class <%=serviceName.capitalize()%>Response(
     val name: String
 ) {
-    constructor(<%=serviceName.toLocaleLowerCase()%>Response: <%=serviceName.capitalize()%>Request): this(
+    constructor(<%=serviceName.toLocaleLowerCase()%>Response: <%=serviceName.capitalize()%>Response): this(
         <%=serviceName.toLocaleLowerCase()%>Response.name
     )
 }
